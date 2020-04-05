@@ -1,16 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppComponent } from './app.component';
+import { DragDropMainComponent } from './drag-drop-main/drag-drop-main.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatCardModule } from '@angular/material';
+import { MatSliderModule } from '@angular/material';
+import { MatDividerModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [ AppComponent, DragDropMainComponent ],
+	imports: [
+		BrowserModule,
+		DragDropModule,
+		FlexLayoutModule,
+		MatCardModule,
+		MatSliderModule,
+		MatDividerModule,
+		BrowserAnimationsModule
+	],
+	providers: [],
+	bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {}

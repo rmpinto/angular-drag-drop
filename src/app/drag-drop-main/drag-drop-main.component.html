@@ -1,0 +1,35 @@
+<div fxLayout="row" fxLayoutGap="10px" class="top-container">
+  <mat-card fxFlex="100%" class="deliverables-container">
+    <div fxLayout="column" class="example-container">
+      <h2>Deliverables</h2>
+      <div
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[doneList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card fxFlex="100%" class="deliverables-container">
+    <div fxLayout="column"  class="example-container">
+      <h2>Annex</h2>
+      <div
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="done"
+        [cdkDropListConnectedTo]="[todoList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+  </mat-card>
+
+</div>
+
+
+
