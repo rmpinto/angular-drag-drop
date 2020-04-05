@@ -22,9 +22,8 @@ export interface Group {
 })
 export class DragDropMainComponent implements OnInit {
 	public groupArray: Group[] = [];
+	public connectedTo: string[] = [];
 
-	todo = [ 'Get to work', 'Pick up groceries', 'Go home', 'Fall asleep' ];
-	done = [ 'Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog' ];
 	constructor() {}
 
 	ngOnInit() {
@@ -39,15 +38,25 @@ export class DragDropMainComponent implements OnInit {
 			id: 2,
 			price: 40
 		};
+		const deliverableThree: Deliverable = {
+			name: 'deliverable3',
+			id: 1,
+			price: 10
+		};
+		const deliverableFour: Deliverable = {
+			name: 'deliverable4',
+			id: 2,
+			price: 40
+		};
 
-		// Initialize main group of deliveries
+		// Initialize source group of deliverables
 		const groupMain: Group = {
 			name: 'All Deliverables',
 			id: 0,
-			items: [ deliverableOne, deliverableTwo ]
+			items: [ deliverableOne, deliverableTwo, deliverableThree, deliverableFour ]
 		};
 
-		// Initialize grouping groups of deliveries
+		// Initialize grouping groups of deliverables
 		const groupA: Group = {
 			name: 'GroupA',
 			id: 1,
@@ -59,7 +68,17 @@ export class DragDropMainComponent implements OnInit {
 			items: []
 		};
 
-		this.groupArray = [ groupA, groupB ];
+		this.groupArray = [ groupMain, groupA, groupB ];
+		for (const group of this.groupArray) {
+			this.connectedTo.push(group.id.toString());
+		}
+
+		console.log(this.connectedTo);
+	}
+
+	getTotalPrice(group: Group) {
+		const totalPrice = group.items.map((e) => e.price).reduce((a, b) => a + b, 0);
+		return totalPrice;
 	}
 
 	drop(event: CdkDragDrop<string[]>) {
