@@ -7,6 +7,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material';
 import { MatSliderModule } from '@angular/material';
 import { MatDividerModule } from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -18,6 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 		MatCardModule,
 		MatSliderModule,
 		MatDividerModule,
+		MatInputModule,
+		MatButtonModule,
 		BrowserAnimationsModule
 	],
 	providers: [],

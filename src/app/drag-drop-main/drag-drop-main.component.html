@@ -1,27 +1,73 @@
 <div fxLayout="row" fxLayoutGap="10px" class="top-container">
-  <mat-card
-    fxFlex="100%"
-    class="deliverables-container"
-    *ngFor="let group of groupArray">
-    <div fxLayout="column"  class="example-container">
-      <h2>{{group.name}} - {{ getTotalPrice(group)}}</h2>
-      <div
-        cdkDropList
-        class="example-list"
-        id="{{group.id}}"
-        [cdkDropListData]="group.items"
-        [cdkDropListConnectedTo]="connectedTo"
-        (cdkDropListDropped)="drop($event)">
+  <div fxFlex="30%" fxLayout="column">
+    <mat-card>
+      <form class="example-form">
+        <mat-form-field class="input-text">
+          <mat-label>New Deliverable Name</mat-label>
+          <input matInput placeholder="Deliverable X" value="">
+        </mat-form-field>
+        <mat-form-field class="input-text">
+          <mat-label>Price</mat-label>
+          <input matInput placeholder="Price" value="">
+        </mat-form-field>
+        <button mat-raised-button color="primary">Create!</button>
+      </form>
+    </mat-card>
+    <mat-card
+      fxFlex="100%"
+      class="deliverables-container"
+      *ngFor="let group of groupArray.slice(0,1)">
+      <div fxLayout="column"  class="example-container">
+        <h2>{{group.name}} - {{ getTotalPrice(group)}}</h2>
         <div
-          class="example-box"
-          *ngFor="let item of group.items"
-          cdkDrag>
-            {{item.name}} - {{item.price}}
+          cdkDropList
+          class="example-list"
+          id="{{group.id}}"
+          [cdkDropListData]="group.items"
+          [cdkDropListConnectedTo]="connectedTo"
+          (cdkDropListDropped)="drop($event)">
+          <div
+            class="example-box"
+            *ngFor="let item of group.items"
+            cdkDrag>
+              {{item.name}} - {{item.price}}
+          </div>
         </div>
       </div>
-    </div>
-  </mat-card>
+    </mat-card>
+  </div>
+  <div fxFlex="70%" fxLayout="column">
+    <mat-card>
+      <form class="example-form">
+        <mat-form-field class="input-text">
+          <mat-label>New Group Name</mat-label>
+          <input matInput placeholder="Deliverable X" value="" #newGroup>
+        </mat-form-field>
+      </form>
+      <button type="text" mat-raised-button color="primary" (click)="onAddGroup(newGroup.value)">Create!</button>
+    </mat-card>
+    <mat-card
+      fxFlex="100%"
+      class="groups-container"
+      *ngFor="let group of groupArray.slice(1, groupArray.length)">
+      <div fxLayout="column"  class="example-container">
+        <h2>{{group.name}} - {{ getTotalPrice(group)}}</h2>
+        <div
+          cdkDropList
+          class="example-list"
+          id="{{group.id}}"
+          cdkDropListOrientation="horizontal"
+          [cdkDropListData]="group.items"
+          [cdkDropListConnectedTo]="connectedTo"
+          (cdkDropListDropped)="drop($event)">
+          <div
+            class="example-box"
+            *ngFor="let item of group.items"
+            cdkDrag>
+              {{item.name}} - {{item.price}}
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
 </div>
-
-
-

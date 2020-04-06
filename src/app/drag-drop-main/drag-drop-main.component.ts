@@ -76,6 +76,17 @@ export class DragDropMainComponent implements OnInit {
 		console.log(this.connectedTo);
 	}
 
+	onAddGroup(groupName: string) {
+		const newGroup: Group = {
+			name: groupName,
+			id: this.groupArray.map((e) => e.id).reduce((a, b) => a + b, 0),
+			items: []
+		};
+		console.log(newGroup);
+		this.groupArray.push(newGroup);
+		this.connectedTo.push(newGroup.id.toString());
+	}
+
 	getTotalPrice(group: Group) {
 		const totalPrice = group.items.map((e) => e.price).reduce((a, b) => a + b, 0);
 		return totalPrice;
