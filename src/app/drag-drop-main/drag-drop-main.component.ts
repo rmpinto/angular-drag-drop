@@ -23,6 +23,8 @@ export interface Group {
 export class DragDropMainComponent implements OnInit {
 	public groupArray: Group[] = [];
 	public connectedTo: string[] = [];
+	public newDeliverable: Deliverable = { name: '', id: null, price: 0 };
+	public newGroup: Group = { name: '', id: null, items: [] };
 
 	constructor() {}
 
@@ -77,14 +79,14 @@ export class DragDropMainComponent implements OnInit {
 	}
 
 	onAddGroup(groupName: string) {
-		const newGroup: Group = {
-			name: groupName,
-			id: this.groupArray.map((e) => e.id).reduce((a, b) => a + b, 0),
-			items: []
-		};
-		console.log(newGroup);
-		this.groupArray.push(newGroup);
-		this.connectedTo.push(newGroup.id.toString());
+		// this.newGroup = {
+		// 	name: groupName,
+		// 	id: this.groupArray.map((e) => e.id).reduce((a, b) => a + b, 0),
+		// 	items: []
+		// };
+		// console.log(this.newGroup);
+		// this.groupArray.push(this.newGroup);
+		// this.connectedTo.push(this.newGroup.id.toString());
 	}
 
 	getTotalPrice(group: Group) {

@@ -10,6 +10,7 @@ import { MatDividerModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [ AppComponent, DragDropMainComponent ],
@@ -22,7 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 		MatDividerModule,
 		MatInputModule,
 		MatButtonModule,
-		BrowserAnimationsModule
+		BrowserAnimationsModule,
+		FormsModule
 	],
 	providers: [],
 	bootstrap: [ AppComponent ]
