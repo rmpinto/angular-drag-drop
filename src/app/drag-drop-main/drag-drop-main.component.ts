@@ -74,27 +74,33 @@ export class DragDropMainComponent implements OnInit {
 		for (const group of this.groupArray) {
 			this.connectedTo.push(group.id.toString());
 		}
-
-		console.log(this.connectedTo);
 	}
 
-	onAddGroup(groupName: string) {
-		// this.newGroup = {
-		// 	name: groupName,
-		// 	id: this.groupArray.map((e) => e.id).reduce((a, b) => a + b, 0),
-		// 	items: []
-		// };
-		// console.log(this.newGroup);
-		// this.groupArray.push(this.newGroup);
-		// this.connectedTo.push(this.newGroup.id.toString());
+	public onAddGroup(groupName: string) {
+		console.log(groupName);
+		const name = groupName;
+		const id = Math.max(...this.groupArray.map((e) => e.id)) + 1;
+		const items = [];
+		console.log(name, id, items);
+		this.groupArray.push({ name, id, items });
+		this.connectedTo.push(id.toString());
 	}
 
-	getTotalPrice(group: Group) {
+	public onDeleteGroup(group: any) {
+		if (group.items.length > 0) {
+			group.items.forEach((e) => this.groupArray[0].items.push(e));
+			group.items = [];
+		}
+		this.groupArray.splice(this.groupArray.findIndex((e) => e.id === group.id), 1);
+		console.log('groupStatus', this.groupArray);
+	}
+
+	public getTotalPrice(group: Group) {
 		const totalPrice = group.items.map((e) => e.price).reduce((a, b) => a + b, 0);
 		return totalPrice;
 	}
 
-	drop(event: CdkDragDrop<string[]>) {
+	public drop(event: CdkDragDrop<string[]>) {
 		if (event.previousContainer === event.container) {
 			moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
 		} else {
@@ -105,5 +111,6 @@ export class DragDropMainComponent implements OnInit {
 				event.currentIndex
 			);
 		}
+		console.log('groupStatus', this.groupArray);
 	}
 }

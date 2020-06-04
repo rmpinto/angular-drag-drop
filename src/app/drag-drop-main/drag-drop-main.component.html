@@ -79,7 +79,7 @@
       <button
         mat-raised-button
         color="primary"
-        [disabled]="newGroupName.invalid"
+        [disabled]="f2.invalid"
         (click)="onAddGroup(newGroup.name)">
         Create!
       </button>
@@ -88,8 +88,15 @@
       fxFlex="100%"
       class="groups-container"
       *ngFor="let group of groupArray.slice(1, groupArray.length)">
-      <div fxLayout="column"  class="example-container">
-        <h2>{{group.name}} - {{ getTotalPrice(group)}}</h2>
+      <div fxLayout="column" class="example-container">
+        <div fxLayout="row">
+          <div fxFlex="50%" fxLayout="column" fxLayoutAlign="center start">
+            <h2>{{group.name}} - {{ getTotalPrice(group)}}</h2>
+          </div>
+          <div fxFlex="50%" fxLayout="column" fxLayoutAlign="center end">
+            <button mat-mini-fab color="warn" (click)="onDeleteGroup(group)">X</button>
+          </div>
+        </div>
         <div
           cdkDropList
           class="example-list"
